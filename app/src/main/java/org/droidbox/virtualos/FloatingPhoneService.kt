@@ -48,7 +48,7 @@ class FloatingPhoneService : Service() {
         val inflater = getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         floatingView = inflater.inflate(R.layout.activity_main, null)
 
-        floatingView?.findViewById<TextView>(R.id.tvTitle)?.text = "DroidBox (Floating Mini Window)"
+        floatingView?.findViewById<TextView>(R.id.tvEngineBadge)?.text = "● Floating Mini Virtual Phone"
         floatingView?.findViewById<Button>(R.id.btnFloatingMode)?.text = "Close Float"
         floatingView?.findViewById<Button>(R.id.btnFloatingMode)?.setOnClickListener {
             stopSelf()

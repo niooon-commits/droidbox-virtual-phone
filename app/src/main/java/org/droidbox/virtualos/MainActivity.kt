@@ -620,7 +620,7 @@ class MainActivity : AppCompatActivity() {
             text = title
             textSize = 22f
             setTextColor(color)
-            textStyle = android.graphics.Typeface.BOLD
+            setTypeface(null, android.graphics.Typeface.BOLD)
             setPadding(0, 16, 0, 16)
         }
         view.addView(tvTitle)
