@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#050811"
+    android:padding="12dp">
+
+    <TextView
+        android:id="@+id/tvTerminalOutput"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:textColor="#10B981"
+        android:fontFamily="monospace"
+        android:textSize="12sp"
+        android:scrollbars="vertical"
+        android:text="DroidBox Virtual Android OS Terminal\nLinux kernel 6.1.25-droidbox (aarch64)\nType 'help' to view available commands.\n\n$ " />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:background="#131B2E"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="$ "
+            android:textColor="#38BDF8"
+            android:fontFamily="monospace"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/etTerminalInput"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@null"
+            android:textColor="#FFFFFF"
+            android:fontFamily="monospace"
+            android:textSize="13sp"
+            android:hint="uname -a, ps, pm list, getprop..."
+            android:textColorHint="#475569"
+            android:singleLine="true" />
+
+        <Button
+            android:id="@+id/btnTerminalSend"
+            style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:minHeight="0dp"
+            android:text="Run"
+            android:textSize="10sp"
+            android:backgroundTint="#2563EB"
+            android:textColor="#FFFFFF" />
+    </LinearLayout>
+</LinearLayout>

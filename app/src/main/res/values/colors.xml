@@ -1,5 +1,18 @@
 <resources>
     <color name="primary">#2563EB</color>
-    <color name="primary_dark">#1D4ED8</color>
+    <color name="primary_dark">#0B0F19</color>
     <color name="accent">#38BDF8</color>
+    <color name="android_bg">#090D16</color>
+    <color name="android_surface">#131B2E</color>
+    <color name="android_card">#1A243B</color>
+    <color name="android_search">#223050</color>
+    <color name="android_accent_blue">#3B82F6</color>
+    <color name="android_accent_emerald">#10B981</color>
+    <color name="android_accent_purple">#8B5CF6</color>
+    <color name="android_accent_amber">#F59E0B</color>
+    <color name="android_accent_rose">#F43F5E</color>
+    <color name="text_white">#FFFFFF</color>
+    <color name="text_gray">#94A3B8</color>
+    <color name="text_dim">#64748B</color>
+    <color name="nav_bar_bg">#090D16</color>
 </resources>

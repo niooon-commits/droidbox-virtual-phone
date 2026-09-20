@@ -1,90 +1,623 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/rootContainer"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="20dp"
-    android:background="#0F172A">
+    android:background="@drawable/bg_wallpaper">
 
-    <TextView
-        android:id="@+id/tvTitle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="DroidBox Virtual Phone"
-        android:textColor="#38BDF8"
-        android:textSize="22sp"
-        android:textStyle="bold"
-        android:paddingBottom="4dp" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Android-inside-Android Sandboxed C++ Virtual OS"
-        android:textColor="#94A3B8"
-        android:textSize="13sp"
-        android:paddingBottom="16dp" />
-
-    <TextView
-        android:id="@+id/tvStatus"
-        android:layout_width="match_parent"
-        android:layout_height="160dp"
-        android:background="#1E293B"
-        android:textColor="#A7F3D0"
-        android:fontFamily="monospace"
-        android:textSize="12sp"
-        android:padding="12dp"
-        android:text="Status: Ready" />
-
+    <!-- 1. Top Android Status Bar -->
     <LinearLayout
+        android:id="@+id/statusBar"
+        android:layout_width="match_parent"
+        android:layout_height="28dp"
+        android:layout_alignParentTop="true"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:background="#15000000">
+
+        <TextView
+            android:id="@+id/tvStatusTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="09:41"
+            android:textColor="#FFFFFF"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:background="@drawable/bg_pill_button"
+            android:backgroundTint="#059669"
+            android:paddingStart="6dp"
+            android:paddingEnd="6dp"
+            android:paddingTop="2dp"
+            android:paddingBottom="2dp"
+            android:text="DROIDBOX 14"
+            android:textColor="#FFFFFF"
+            android:textSize="8sp"
+            android:textStyle="bold" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="5G"
+            android:textColor="#FFFFFF"
+            android:textSize="10sp"
+            android:textStyle="bold"
+            android:layout_marginEnd="6dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="▲ 98%"
+            android:textColor="#34D399"
+            android:textSize="11sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <!-- 2. System Quick-Bar Controls -->
+    <LinearLayout
+        android:id="@+id/quickBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginTop="20dp">
+        android:layout_below="@id/statusBar"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:paddingTop="4dp"
+        android:paddingBottom="6dp">
 
-        <Button
-            android:id="@+id/btnToggleOS"
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/tvEngineBadge"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Start Virtual OS"
-            android:backgroundTint="#2563EB"
-            android:textColor="#FFFFFF" />
+            android:text="● C++ Native Kernel Active"
+            android:textColor="#38BDF8"
+            android:textSize="11sp"
+            android:fontFamily="monospace" />
 
-        <Button
-            android:id="@+id/btnLaunchPlayStore"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Open Virtual Google Play Store"
-            android:backgroundTint="#059669"
-            android:textColor="#FFFFFF"
-            android:layout_marginTop="8dp" />
-
-        <Button
-            android:id="@+id/btnLaunchYouTube"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Open Virtual YouTube"
-            android:backgroundTint="#DC2626"
-            android:textColor="#FFFFFF"
-            android:layout_marginTop="8dp" />
-
-        <Button
-            android:id="@+id/btnInstallApk"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Install APK into Sandbox"
-            android:backgroundTint="#475569"
-            android:textColor="#FFFFFF"
-            android:layout_marginTop="8dp" />
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1" />
 
         <Button
             android:id="@+id/btnFloatingMode"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Switch to Floating Window Mode"
-            android:backgroundTint="#7C3AED"
-            android:textColor="#FFFFFF"
-            android:layout_marginTop="8dp" />
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="32dp"
+            android:minHeight="0dp"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            android:text="Floating PiP"
+            android:textColor="#A78BFA"
+            android:textSize="10sp"
+            android:textStyle="bold" />
 
+        <Button
+            android:id="@+id/btnReboot"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="32dp"
+            android:minHeight="0dp"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            android:text="Reboot"
+            android:textColor="#94A3B8"
+            android:textSize="10sp" />
     </LinearLayout>
 
-</LinearLayout>
+    <!-- 3. Bottom Android Navigation Bar (Back, Home, Recents) -->
+    <LinearLayout
+        android:id="@+id/navBar"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:background="#20000000">
+
+        <Button
+            android:id="@+id/btnNavBack"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="◀"
+            android:textColor="#E2E8F0"
+            android:textSize="16sp" />
+
+        <Button
+            android:id="@+id/btnNavHome"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="⬤"
+            android:textColor="#E2E8F0"
+            android:textSize="16sp" />
+
+        <Button
+            android:id="@+id/btnNavRecents"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="⬛"
+            android:textColor="#E2E8F0"
+            android:textSize="15sp" />
+    </LinearLayout>
+
+    <!-- 4. Main Android Launcher Home Screen -->
+    <RelativeLayout
+        android:id="@+id/homeScreenContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/quickBar"
+        android:layout_above="@id/navBar">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/dockBar"
+            android:fillViewport="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                android:paddingTop="12dp">
+
+                <!-- Glance Widget -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingTop="8dp"
+                    android:paddingBottom="12dp">
+
+                    <TextView
+                        android:id="@+id/tvGlanceDate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Sunday, Sep 20"
+                        android:textColor="#F8FAFC"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tvGlanceWeather"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="26°C Clear • Pixel 8 Pro Sandboxed"
+                        android:textColor="#94A3B8"
+                        android:textSize="13sp" />
+                </LinearLayout>
+
+                <!-- Search Bar -->
+                <LinearLayout
+                    android:id="@+id/btnSearchLauncher"
+                    android:layout_width="match_parent"
+                    android:layout_height="46dp"
+                    android:background="@drawable/bg_search_bar"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    android:layout_marginBottom="24dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="G"
+                        android:textColor="#3B82F6"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginStart="12dp"
+                        android:text="Search apps or web..."
+                        android:textColor="#94A3B8"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="🔍"
+                        android:textSize="14sp" />
+                </LinearLayout>
+
+                <!-- Apps Grid -->
+                <GridLayout
+                    android:id="@+id/appsGrid"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:columnCount="4"
+                    android:alignmentMode="alignMargins"
+                    android:useDefaultMargins="false"
+                    android:rowOrderPreserved="false">
+
+                    <!-- App 1: DroidStore / Play Store -->
+                    <LinearLayout
+                        android:id="@+id/appStore"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_columnWeight="1"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:padding="8dp">
+
+                        <TextView
+                            android:layout_width="54dp"
+                            android:layout_height="54dp"
+                            android:background="@drawable/bg_app_icon_circle"
+                            android:backgroundTint="#059669"
+                            android:gravity="center"
+                            android:text="🏪"
+                            android:textSize="26sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="DroidStore"
+                            android:textColor="#FFFFFF"
+                            android:textSize="11sp"
+                            android:layout_marginTop="6dp" />
+                    </LinearLayout>
+
+                    <!-- App 2: Browser -->
+                    <LinearLayout
+                        android:id="@+id/appBrowser"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_columnWeight="1"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:padding="8dp">
+
+                        <TextView
+                            android:layout_width="54dp"
+                            android:layout_height="54dp"
+                            android:background="@drawable/bg_app_icon_circle"
+                            android:backgroundTint="#2563EB"
+                            android:gravity="center"
+                            android:text="🌐"
+                            android:textSize="26sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Chrome"
+                            android:textColor="#FFFFFF"
+                            android:textSize="11sp"
+                            android:layout_marginTop="6dp" />
+                    </LinearLayout>
+
+                    <!-- App 3: Settings -->
+                    <LinearLayout
+                        android:id="@+id/appSettings"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_columnWeight="1"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:padding="8dp">
+
+                        <TextView
+                            android:layout_width="54dp"
+                            android:layout_height="54dp"
+                            android:background="@drawable/bg_app_icon_circle"
+                            android:backgroundTint="#475569"
+                            android:gravity="center"
+                            android:text="⚙️"
+                            android:textSize="26sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Settings"
+                            android:textColor="#FFFFFF"
+                            android:textSize="11sp"
+                            android:layout_marginTop="6dp" />
+                    </LinearLayout>
+
+                    <!-- App 4: Files -->
+                    <LinearLayout
+                        android:id="@+id/appFiles"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_columnWeight="1"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:padding="8dp">
+
+                        <TextView
+                            android:layout_width="54dp"
+                            android:layout_height="54dp"
+                            android:background="@drawable/bg_app_icon_circle"
+                            android:backgroundTint="#D97706"
+                            android:gravity="center"
+                            android:text="📁"
+                            android:textSize="26sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Files"
+                            android:textColor="#FFFFFF"
+                            android:textSize="11sp"
+                            android:layout_marginTop="6dp" />
+                    </LinearLayout>
+
+                    <!-- App 5: Terminal (ADB) -->
+                    <LinearLayout
+                        android:id="@+id/appTerminal"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_columnWeight="1"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:padding="8dp">
+
+                        <TextView
+                            android:layout_width="54dp"
+                            android:layout_height="54dp"
+                            android:background="@drawable/bg_app_icon_circle"
+                            android:backgroundTint="#0F172A"
+                            android:gravity="center"
+                            android:text="💻"
+                            android:textSize="26sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Terminal"
+                            android:textColor="#FFFFFF"
+                            android:textSize="11sp"
+                            android:layout_marginTop="6dp" />
+                    </LinearLayout>
+
+                    <!-- App 6: YouTube -->
+                    <LinearLayout
+                        android:id="@+id/appYouTube"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_columnWeight="1"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:padding="8dp">
+
+                        <TextView
+                            android:layout_width="54dp"
+                            android:layout_height="54dp"
+                            android:background="@drawable/bg_app_icon_circle"
+                            android:backgroundTint="#DC2626"
+                            android:gravity="center"
+                            android:text="▶️"
+                            android:textSize="26sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="YouTube"
+                            android:textColor="#FFFFFF"
+                            android:textSize="11sp"
+                            android:layout_marginTop="6dp" />
+                    </LinearLayout>
+
+                    <!-- App 7: Camera -->
+                    <LinearLayout
+                        android:id="@+id/appCamera"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_columnWeight="1"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:padding="8dp">
+
+                        <TextView
+                            android:layout_width="54dp"
+                            android:layout_height="54dp"
+                            android:background="@drawable/bg_app_icon_circle"
+                            android:backgroundTint="#0891B2"
+                            android:gravity="center"
+                            android:text="📷"
+                            android:textSize="26sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Camera"
+                            android:textColor="#FFFFFF"
+                            android:textSize="11sp"
+                            android:layout_marginTop="6dp" />
+                    </LinearLayout>
+
+                    <!-- App 8: WhatsApp (Installed / Downloader) -->
+                    <LinearLayout
+                        android:id="@+id/appWhatsApp"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_columnWeight="1"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:padding="8dp">
+
+                        <TextView
+                            android:layout_width="54dp"
+                            android:layout_height="54dp"
+                            android:background="@drawable/bg_app_icon_circle"
+                            android:backgroundTint="#16A34A"
+                            android:gravity="center"
+                            android:text="💬"
+                            android:textSize="26sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="WhatsApp"
+                            android:textColor="#FFFFFF"
+                            android:textSize="11sp"
+                            android:layout_marginTop="6dp" />
+                    </LinearLayout>
+                </GridLayout>
+            </LinearLayout>
+        </ScrollView>
+
+        <!-- Bottom Favorite Apps Dock -->
+        <LinearLayout
+            android:id="@+id/dockBar"
+            android:layout_width="match_parent"
+            android:layout_height="72dp"
+            android:layout_alignParentBottom="true"
+            android:background="#22000000"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp">
+
+            <TextView
+                android:id="@+id/dockPhone"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/bg_app_icon_circle"
+                android:backgroundTint="#10B981"
+                android:gravity="center"
+                android:text="📞"
+                android:textSize="22sp" />
+
+            <TextView
+                android:id="@+id/dockMessages"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/bg_app_icon_circle"
+                android:backgroundTint="#3B82F6"
+                android:gravity="center"
+                android:text="✉️"
+                android:textSize="22sp" />
+
+            <TextView
+                android:id="@+id/dockBrowser"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/bg_app_icon_circle"
+                android:backgroundTint="#2563EB"
+                android:gravity="center"
+                android:text="🌐"
+                android:textSize="22sp" />
+
+            <TextView
+                android:id="@+id/dockStore"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/bg_app_icon_circle"
+                android:backgroundTint="#059669"
+                android:gravity="center"
+                android:text="🏪"
+                android:textSize="22sp" />
+
+            <TextView
+                android:id="@+id/dockCamera"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/bg_app_icon_circle"
+                android:backgroundTint="#0891B2"
+                android:gravity="center"
+                android:text="📷"
+                android:textSize="22sp" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <!-- 5. Active App Fullscreen Window Container -->
+    <FrameLayout
+        android:id="@+id/appWindowContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/statusBar"
+        android:layout_above="@id/navBar"
+        android:background="#0F172A"
+        android:visibility="gone">
+
+        <!-- App Window Header -->
+        <RelativeLayout
+            android:id="@+id/appWindowHeader"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:background="#1E293B"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp">
+
+            <Button
+                android:id="@+id/btnAppBack"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:minHeight="0dp"
+                android:minWidth="0dp"
+                android:text="←"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/tvAppTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@id/btnAppBack"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="12dp"
+                android:text="DroidStore"
+                android:textColor="#FFFFFF"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/btnAppClose"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:minHeight="0dp"
+                android:minWidth="0dp"
+                android:text="✕"
+                android:textColor="#94A3B8"
+                android:textSize="14sp" />
+        </RelativeLayout>
+
+        <!-- Dynamic Container for Active App Content -->
+        <FrameLayout
+            android:id="@+id/appContentFrame"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="48dp">
+        </FrameLayout>
+    </FrameLayout>
+
+</RelativeLayout>
