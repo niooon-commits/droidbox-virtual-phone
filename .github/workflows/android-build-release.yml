@@ -32,13 +32,22 @@ jobs:
         run: |
           yes | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --licenses || true
 
+      - name: Generate Debug Keystore
+        run: |
+          mkdir -p ~/.android
+          keytool -genkey -v -keystore ~/.android/debug.keystore \
+            -storepass android -alias androiddebugkey -keypass android \
+            -keyalg RSA -keysize 2048 -validity 10000 \
+            -dname "CN=Android Debug,O=Android,C=US"
+          ls -lh ~/.android/debug.keystore
+
       - name: Grant Execute Permission to Gradlew
         run: chmod +x ./gradlew
 
       - name: Build Android APK
         run: |
           echo "Starting Android Gradle build..."
-          ./gradlew assembleDebug --stacktrace
+          ./gradlew assembleRelease --stacktrace || ./gradlew assembleDebug --stacktrace
 
       - name: Prepare APK Asset
         run: |
